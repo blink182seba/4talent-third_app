@@ -1,0 +1,25 @@
+<%= link_to "Refrescar", city_get_temperatures_path, class:'btn btn-block btn-info' %>
+<br>
+
+<div class="row">
+    <% if @cities != nil %>
+        <% @cities.each do |city| %>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="card mb-4 shadow-sm">
+                    <img class="card-img-top" src="<%= city.image %>" alt="City" width="350" height="200">
+                    <div class="card-body">
+                        <p class="card-text"><%= city.name %></p>
+                        <span>Ultima Temperatura Registrada: </span>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted"><%= city.weathers.last.try(:temperature) %></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    <% else %>
+    <div class="alert alert-danger" role="alert">
+        Ooops! De momento no contamos con registros para su solicitud.
+    </div>
+    <% end %>
+</div>
